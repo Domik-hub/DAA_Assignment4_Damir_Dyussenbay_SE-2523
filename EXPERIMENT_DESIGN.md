@@ -1,0 +1,17 @@
+# Experiment Design Card - recorded before the first run
+
+Date: 2026-11-07. Seed: 20261107. This file is committed before tests and benchmarks.
+
+| Field | Plan and reason |
+|---|---|
+| Questions | Edit distance: how do input structure and size affect repeated recursive work, DP time, and DP storage? Search: how much does a long nearly matching prefix hurt Naive compared with KMP? |
+| Sizes | Recursive: equal lengths n = 3, 6, 9, 12 (4x span; bounded exponential work). Table and TwoRows: n = 128, 256, 512, 1024, 2048 (16x span; quadratic work). Naive and KMP: text n = 4096, 16384, 65536, 262144 (64x span); pattern length m = 64. All algorithms have at least four sizes. |
+| Edit inputs | identical: a random string paired with itself, showing recursion's equal-character shortcut; random: independent strings over ABCD, a non-adversarial baseline; disjoint: A^n versus B^n, forcing three recursive branches at every non-base state. Table and TwoRows fill every interior cell in all three cases. |
+| Search inputs | random: independent text and pattern over ABCD, a baseline where short mismatches are common; early_mismatch: A^n and B^64, Naive's best mismatch case; adversarial: A^n and A^63 B, making Naive recheck 63 equal characters before failing. |
+| Metrics | Every algorithm counts character comparisons inside its loops/recursion. Edit distance also records recursive calls, interior DP cells, and simultaneously allocated integer DP cells (not bytes or total JVM heap). Search separates text comparisons from LPS comparisons. Record five timed samples and report their median in milliseconds. |
+| Method | Generate inputs outside the timed region using a custom fixed-seed generator. Two unrecorded warm-up batches precede five recorded batches per configuration. Use fixed batches to avoid near-zero clock readings: recursion n=3: 10000 calls, n=6: 100, n=9: 2, n=12: 1; DP n=128: 64, n=256: 16, n=512: 4, otherwise 1; search: 1048576/n invocations. Every CSV row is one timed batch; time_ms is batch_time_ms / iterations; counters describe one invocation and must agree across all iterations. Consume answers to prevent unused-result elimination. |
+| Prediction | Disjoint recursion grows exponentially; identical recursion is linear. Both DP variants evaluate n^2 cells and tend toward quadratic time; full-table integer storage is quadratic and two-row storage linear. With fixed m=64, both searches are linear in n, but adversarial Naive has a much larger comparison constant; KMP remains O(n+m) including LPS. Early mismatches can favor Naive. |
+| Plots | (1) Recursive calls versus n, logarithmic y-axis: repeated work versus the equal-character shortcut. (2) DP integer cells versus n, log-log: quadratic versus linear storage. (3) Search comparisons versus n, log-log: random, best and adverse inputs. (4) Median search time versus n, log-log: whether time broadly agrees with the counters. A DP timing summary accompanies the figures. Each figure has units, a legend and a takeaway. |
+| Reproducibility and limits | Identical seed and command reproduce inputs, answers and counters; elapsed times necessarily vary. Java UTF-16 code units are the unit of each string operation. These are controlled instrumented experiments, not a JMH throughput benchmark. The recursive cutoff n=12 is a planned safety limit, not a claim about the largest possible input. |
+
+Design changes after the first benchmark: none planned; any actual change will be documented in REPORT.md.
