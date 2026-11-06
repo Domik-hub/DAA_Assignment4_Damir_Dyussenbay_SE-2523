@@ -1,0 +1,6 @@
+[INFO] Tests run: 103, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.555 s -- in edu.daa.EditDistanceTest
+[INFO] Tests run: 205, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.475 s -- in edu.daa.StringSearchTest
+[INFO] Tests run: 308, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  01:09 min
+[INFO] Finished at: 2026-11-07T00:50:14+05:00
