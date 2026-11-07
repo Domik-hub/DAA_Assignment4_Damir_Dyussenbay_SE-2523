@@ -70,17 +70,20 @@ The custom SplitMix64 generator uses seed **20261107**, with a deterministic der
 
 ## Git and submission
 
-The local repository is on branch `main` and the submitted version has tag `v1.0`. Commits represent actual steps in creating the project; AI-assisted commits use an AI-assistant identity rather than pretending to be the student.
+The repository is on branch `main` and the submitted version has tag `v1.0`. Commits represent actual steps in creating the project; AI-assisted commits use an AI-assistant identity rather than pretending to be the student.
 
-**GitHub repository URL: not supplied; this project has not been published.** The assignment also requires a GitHub link. After creating an empty repository in your own account, publish the provided local repository and copy the real URL into this README:
+**GitHub repository:** [Domik-hub/DAA_Assignment4_Damir_Dyussenbay_SE-2523](https://github.com/Domik-hub/DAA_Assignment4_Damir_Dyussenbay_SE-2523)  
+**Submission tag:** [v1.0](https://github.com/Domik-hub/DAA_Assignment4_Damir_Dyussenbay_SE-2523/tree/v1.0)
+
+To obtain the exact submitted version:
 
 ```sh
-git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_REPOSITORY.git
-git push -u origin main
-git push origin v1.0
+git clone --branch v1.0 https://github.com/Domik-hub/DAA_Assignment4_Damir_Dyussenbay_SE-2523.git
+cd DAA_Assignment4_Damir_Dyussenbay_SE-2523
+mvn test
 ```
 
-If README is updated after the release tag, commit it and deliberately update the final tag before submission so `v1.0` refers to the version you actually submit. Do not submit the placeholder URL above. The archive is named `DAA_Assignment4_Damir_Dyussenbay_SE-2523.zip`; upload it to Moodle together with the real GitHub link. No Moodle upload has been performed.
+The archive is named `DAA_Assignment4_Damir_Dyussenbay_SE-2523.zip`; upload it to Moodle together with the GitHub repository link above. No Moodle upload has been performed.
 
 ## AI-use acknowledgement
 
